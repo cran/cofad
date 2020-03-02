@@ -4,8 +4,15 @@
 \alias{calc_contrast}
 \title{Calculate contrast analysis for factorial designs}
 \usage{
-calc_contrast(dv, between = NULL, lambda_between = NULL,
-  within = NULL, lambda_within = NULL, ID = NULL, data = NULL)
+calc_contrast(
+  dv,
+  between = NULL,
+  lambda_between = NULL,
+  within = NULL,
+  lambda_within = NULL,
+  ID = NULL,
+  data = NULL
+)
 }
 \arguments{
 \item{dv}{dependent variable. Values must be numeric.}
@@ -50,7 +57,7 @@ the factors must be connected.
 tab31 <- data.frame(
   Val = c(2, 6, 8, 4,10, 6, 8, 10, 4, 12, 8,
     16, 10, 14, 12, 12,  18, 14, 20, 16),
-  Let = rep(c("A", "B", "C", "D"), c(5, 5, 5, 5))
+  Let = as.factor(rep(c("A", "B", "C", "D"), c(5, 5, 5, 5)))
   )
 contr_bw <- calc_contrast(
    dv = Val,

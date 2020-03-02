@@ -6,7 +6,7 @@ output: rmarkdown::html_vignette
 bibliography: "library.bib"
 csl: apa.csl
 vignette: >
-  %\VignetteIndexEntry{my-vignette}
+  %\VignetteIndexEntry{cofad-vignette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -39,8 +39,9 @@ Now we need some data and hypotheses. We can simply take the data from @furr2004
 ```{r}
 d <- data.frame(empathy = c(51, 56, 61, 58, 54, 62, 67, 57, 65, 59, 50, 49, 47, 45,
                             44, 50, 45, 40, 49, 41),
-                major = rep(c("psychology", "education", "business",
-                              "chemistry"), each = 5))
+                major = as.factor(
+                  rep(c("psychology", "education", "business",
+                              "chemistry"), each = 5)))
 head(d)
 ```
 
@@ -116,7 +117,7 @@ d <- data.frame(reading_test = c(27, 25, 30, 29, 30, 33, 31, 35,
                                  21, 25, 23, 26, 27, 26, 29, 31, 
                                  23, 24, 24, 28, 24, 26, 27, 32),
                 participant = as.factor(rep(1:8, 4)),
-                music = rep(c("without music", "white noise", "classic", "jazz"), each = 8))
+                music = as.factor(rep(c("without music", "white noise", "classic", "jazz"), each = 8)))
 head(d)
 calc_contrast(dv = reading_test, within = music,
               lambda_within = c("without music" = 1.25, 
