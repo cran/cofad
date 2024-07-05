@@ -11,6 +11,7 @@ calc_contrast(
   within = NULL,
   lambda_within = NULL,
   ID = NULL,
+  id = NULL,
   data = NULL
 )
 }
@@ -33,15 +34,19 @@ Names must match the levels of \code{between}. If
 \code{lambda_between}
 does not sum up to zero, this will be done automatically.}
 
-\item{ID}{identifier for cases or subjects is needed
-for within- and mixed contrastanalysis.}
+\item{ID}{deprecated, use id instead}
+
+\item{id}{identifier for cases or subjects is needed
+for within- and mixed contrast analysis.}
 
 \item{data}{optional argument for the \code{data.frame}
 containing \code{dv} and groups.}
 }
 \value{
-Calculates the significance of the contrast analysis.
-given.
+an object of type cofad_bw or cofad_wi or cofad_mx, including
+  p-value, F-value, contrast weights, different effect sizes. Call summary
+  on this object to get a nice overview of all relevant statistics. Call
+  print to get a short text that can be used for a report.
 }
 \description{
 Calculate contrast analysis for factorial designs
@@ -49,68 +54,58 @@ Calculate contrast analysis for factorial designs
 \details{
 For multi-factorial designs, the lambda weights of
 the factors must be connected.
+
+Note that cofad returns one-sided p-values for t-tests.
 }
 \examples{
 # Example for between-subjects design Table 3.1 from
 # Rosenthal, Rosnow and Rubin (2001)
 
-tab31 <- data.frame(
-  Val = c(2, 6, 8, 4,10, 6, 8, 10, 4, 12, 8,
-    16, 10, 14, 12, 12,  18, 14, 20, 16),
-  Let = as.factor(rep(c("A", "B", "C", "D"), c(5, 5, 5, 5)))
-  )
+data(rosenthal_tbl31)
 contr_bw <- calc_contrast(
-   dv = Val,
-   between = Let,
+   dv = dv,
+   between = between,
    lambda_between = c("A" = -3, "B" = -1, "C" = 1, "D" = 3),
-   data = tab31)
+   data = rosenthal_tbl31)
 contr_bw
 summary(contr_bw)
 
 # Example for within-subjects design Calculation 16.6 from
 # Sedlmeier and Renkewitz (2018, p. 537)
 
-sedlmeier537 <- data.frame(
-   Var = c(27, 25, 30, 29, 30, 33, 31, 35,
-           25, 26, 32, 29, 28, 30, 32, 34,
-           21, 25, 23, 26, 27, 26, 29, 31,
-           23, 24, 24, 28, 24, 26, 27, 32),
-   within = as.factor(rep(1:4,c(8,8,8,8))),
-   ID = as.factor(rep(1:8,4)))
+data(sedlmeier_p537)
 contr_wi <- calc_contrast(
-   dv = Var,
-   within = within,
-   ID = ID,
-   lambda_within = c("1" = 0.25, "2" = -.75, "3" = 1.25, "4" = -.75),
-   data=sedlmeier537
+   dv = reading_test,
+   within = music,
+   id = participant,
+   lambda_within = c(
+     "without music" = 1.25,
+     "white noise" = 0.25,
+     "classic" = -0.75,
+     "jazz" = -0.75
+   ),
+   data = sedlmeier_p537
  )
 contr_wi
-summary(contr_wi, ci=.90)
+summary(contr_wi, ci = .90)
 
-# Exampel for mixed-designs Table 5.3 from
+# Example for mixed-design Table 5.3 from
 # Rosenthal, Rosnow and Rubin (2001)
-tab53 <- data.frame(
-   Var = c(3, 1, 4, 4, 5, 5, 6, 5, 7, 2, 2, 5,
-           5, 6, 7, 6, 6, 8, 3, 1, 5, 4, 5, 6,
-           7, 6, 8, 3, 2, 5, 6, 6, 7, 8, 8, 9),
-           bw = as.factor(rep(rep(LETTERS[1:3], c(3, 3, 3)), 4)),
-           wi = as.factor(rep(1:4, c(9, 9, 9, 9))),
-           ID = as.factor(rep(1:9, 4 ))
-   )
-   lambda_within <- c("1" = -3, "2" = -1, "3" = 1, "4" = 3)
-   lambda_between <-c("A" = -1, "B" = 0, "C" = 1)
 
-contr_mx <- calc_contrast(dv = Var, between = bw,
-              lambda_between = lambda_between,
-              within = wi,
-               lambda_within = lambda_within,
-              ID = ID, data = tab53
+data(rosenthal_tbl53)
+
+contr_mx <- calc_contrast(dv = dv, between = between,
+              lambda_between = c("age8" = -1, "age10" = 0, "age12" = 1),
+              within = within,
+              lambda_within = c("1" = -3, "2" = -1,"3" = 1, "4" = 3),
+              id = id, data = rosenthal_tbl53
               )
 contr_mx
 summary(contr_mx)
+
 }
 \references{
-Rosenthal, R., Rosnow, R.L., & Rubin, D.B. (2000).
-Contrasts and effect sizes in behavioral research:
-A correlational approach. New York: Cambridge University Press.
+Rosenthal, R., Rosnow, R.L., & Rubin, D.B. (2000). Contrasts and
+  effect sizes in behavioral research: A correlational approach. New York:
+  Cambridge University Press.
 }

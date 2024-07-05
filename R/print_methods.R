@@ -1,95 +1,69 @@
 #' Output of between-subject design contrast analysis
+#'
 #' @param x output of calc_contrast
 #' @param ... further arguments
-#' @return Displays the significance of the contrast analysis.
-#' The contrastweights, the corresponding group and an effectsize are
-#' given.
+#' @return Displays the significance of the contrast analysis. The contrast
+#' weights, the corresponding group and an effectsize are given.
 #' @export
 print.cofad_bw <- function(x, ...) {
-  p_value <- round(x[[1]][2], 8)
-  p_value <- ifelse (p_value < .00000001,
-                     paste("; p < .00000001", sep = ""),
-                     paste("; p = ", p_value, sep = "")
+  p_value <- signif(x[[1]][2], 4)
+  p_value <- paste("; p = ", p_value, sep = "")
+  p <- paste("F(1,", x[[1]][4], ") = ", round(x[[1]][1], 3), p_value, sep = "")
+  lambda <- signif(x[[3]], 4)
+  contr_1 <-  paste(
+    paste(names(lambda), "=", lambda, collapse = "; "),
+    collapse = NULL
   )
-  p <- paste("F(1,", x[[1]][4], ") = ", round(x[[1]][1], 3),
-             p_value, sep = "")
-  lambda <- round(x[[3]], 3)
-  contr_1 <-  paste("Contrasts: ",
-                    paste(names(lambda), "=", lambda, collapse = "; "),
-                    collapse = NULL)
   r_effect <- round(x[[4]][1], 3)
-  r_effect_1 <- ifelse (r_effect < 0,
-                        paste("r_effectsize = ", r_effect,
-                              "  CAVE: F-Value for opposite contrast",
-                              sep = ""),
-                        paste("r_effectsize = ", r_effect, sep = "")
+  opposite <- ifelse(
+    r_effect < 0,
+    "Attention: Contrast fits in the opposite direction!",
+    ""
   )
-  cat("\nContrast Analysis for between factor design\n\n")
-  cat(p, contr_1, r_effect_1, sep = "\n" )
+  cat("\nWe ran a contrast analysis for the following between contrasts: ",
+      contr_1, ". ", sep = "")
+  cat("This resulted in statistics of ", p,
+      " and an effect magnitude of r_effectsize = ", r_effect, ". ",
+      opposite, sep = "")
 }
 #' Output of a within subject design contrast analysis
+#'
 #' @param x output of calc_contrast
 #' @param ... further arguments
-#' @return Displays the significance of the contrast analysis.
-#' The contrastweights, the corresponding group and an effectsize are
-#' given.
+#' @return Displays the significance of the contrast analysis. The
+#' contrastweights, the corresponding group and an effectsize are given.
 #' @export
 print.cofad_wi <- function(x, ...) {
-  L_val <- paste("L-Values: Mean = ", round(x[[2]][1], 3),
-                 "; SD = ", round(x[[2]][3], 3) )
-  p_value <- round(x[[1]][2], 8)
-  p_value <- ifelse (p_value < .00000001,
-                     paste("; p < .00000001", sep = ""),
-                     paste("; p = ", p_value, sep = "")
+  l_val <- paste(
+    "L-Values: Mean = ", signif(x[[2]][1], 4), "; SD = ", signif(x[[2]][3], 4)
   )
-  p <- paste("t(", x[[1]][3], ") = ", round(x[[1]][1], 3),
-             p_value, sep = "")
-  lambda <- round(x[[3]], 3)
-  contr_1 <-  paste("Contrasts: ",
-                    paste(names(lambda), "=", lambda, collapse = "; "),
-                    collapse = NULL)
+  p_value <- format.pval(x[[1]][2], 4)
+  p_value <- paste("; p = ", p_value, sep = "")
+  p <- paste("t(", x[[1]][3], ") = ", round(x[[1]][1], 3), p_value, sep = "")
+  lambda <- signif(x[[3]], 4)
+  contr_1 <-  paste(
+    paste(names(lambda), "=", lambda, collapse = "; "),
+    collapse = NULL
+  )
   g_effect <- round(x[[4]][2], 3)
-  g_effect_1 <- paste("g_contrast = ", g_effect, sep = "")
-  cat("\nContrast Analysis for within factor design\n\n")
-  cat(L_val, p, contr_1, g_effect_1, sep = "\n" )
+  opposite <- ifelse(
+    g_effect < 0,
+    "Attention: Contrast fits in the opposite direction!",
+    ""
+  )
+  cat("\nWe ran a contrast analysis for the following within contrasts: ",
+      contr_1, ". ", sep = "")
+  cat("This resulted in statistics of ", p,
+      " and an effect magnitude of g_effectsize = ", g_effect, ". ",
+      opposite, sep = "")
 }
 #' Output of a mixed design contrast analysis
+#'
 #' @param x output of calc_contrast
 #' @param ... further arguments
-#' @return Displays the significance of the contrast analysis.
-#' The contrastweights, the corresponding group and an effectsize are
-#' given.
+#' @return Displays the significance of the contrast analysis. The
+#' contrastweights, the corresponding group and an effectsize are given.
 #' @export
 print.cofad_mx <- function(x, ...) {
-  p_value <- round(x[[1]][2], 8)
-  p_value <- ifelse (p_value < .00000001,
-                     paste("; p < .00000001", sep = ""),
-                     paste("; p = ", p_value, sep = "")
-  )
-  p <- paste("t(", x[[1]][3], ") = ", round(x[[1]][1], 3),
-             p_value, sep = "")
-  lambda <- round(x[[3]], 3)
-  contr_1 <-  paste("Contrasts: ",
-                    paste(names(lambda), "=", lambda, collapse = "; "),
-                    collapse = NULL)
-  p_value <- round(x[[1]][2], 3)
-  p_value <- ifelse (p_value < .001,
-                     paste("; p < .001", sep = ""),
-                     paste("; p = ", p_value, sep = "")
-  )
-  p <- paste("F(1,", x[[1]][4], ") = ", round(x[[1]][1], 3),
-             p_value, sep = "")
-  lambda <- x[[3]]
-  contr_1 <-  paste("Contrasts: ",
-                    paste(names(lambda), "=", lambda, collapse = " "),
-                    collapse = NULL)
-  r_effect <- round(x[[5]][1], 3)
-  r_effect_1 <- ifelse (r_effect < 0,
-                        paste("r_effectsize = ", r_effect,
-                              "  CAVE: F-Value for opposite contrast",
-                              sep = ""),
-                        paste("r_effectsize = ", r_effect, sep = "")
-  )
-  cat("\nContrast Analysis for Mixed-Design:\n\n")
-  cat(p, contr_1, r_effect_1, sep = "\n" )
+  print.cofad_bw(x)
 }
