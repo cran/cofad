@@ -1,10 +1,10 @@
-a311112e66b31bb9fd33b1530f806911 *DESCRIPTION
+424585a57ad7d7d70785a41136ff1e28 *DESCRIPTION
 47a391626da6846e44460662d799e367 *NAMESPACE
-ce65ee61c5f42e7b7e88dc09931d0110 *NEWS.md
+6b1a98770d42ab5dd21b9588cd8000ad *NEWS.md
 1db8419e1c9206696de2f357364fbf43 *R/calc_contrast.R
 fe68e1d84cee00fbab4928d580fceeb0 *R/calc_contrast_aggregated.R
 50945e4a47b4325aeb8718706850511c *R/cofad-package.R
-daf44a094a4d0bad1cd1cc2c9a01a51f *R/data.R
+4a83f16a32aff03c4d6f8e627aa65696 *R/data.R
 73902ba323c2aceb1fff40708e206115 *R/helper.R
 e9c7aa71034fcfd997dbcec25bf93278 *R/print_methods.R
 aeb62d6c37efd2f68cc8d4f6a10529e1 *R/run_app.R
@@ -14,7 +14,7 @@ f23f38240504d675205e82141716c3d8 *R/server.R
 b56ff2b193ecba52f9ec7f3b10cca008 *R/utils-pipe.R
 4bfab8443d3190ee81576e708a0c6e0a *README.md
 76161b65639451c966be75488458b3c3 *build/partial.rdb
-522fcac204e4b6818ad482c94d7661e7 *data/akan.rda
+3d97c3e626645625b1c769d0a1c3cda1 *data/akan.rda
 e2810380050a87f4222d5df842003e10 *data/furr_p4.rda
 40df0df2e8abfd93b0059fc6646daa9b *data/haans_within1by4.rda
 f2ba593fc59365b98940156a24046eba *data/maraver.rda
@@ -30,7 +30,7 @@ a55da765ed3a3c6dd1c16531cec1832c *data/sedlmeier_p537.rda
 e6a4d37dcfd9b9370c9d0f66f1639228 *data/testing_effect.rda
 1a64d8872eb935f5d81590deb879b50b *inst/extdata/citation.txt
 fb4c8698e62230d47aef9ebecdda962d *inst/extdata/intro.html
-074b8e2da674a89ca1726d1d4142d6a7 *man/akan.Rd
+c6647df63cf3a5be21ec4a496a71cef8 *man/akan.Rd
 dc0591cd7b8829c9171cf4aa30bacbda *man/calc_contrast.Rd
 f1876143bda822023ff5a1c535919c2a *man/calc_contrast_aggregated.Rd
 74562b791c7c7a9b33f5f4bb589da290 *man/calc_r_alerting.Rd
