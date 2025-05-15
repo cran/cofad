@@ -1,3 +1,7 @@
+# cofad 0.3.3
+
+* report correct df for t test
+
 # cofad 0.3.2
 
 * change dv name for akan

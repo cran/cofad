@@ -1,6 +1,6 @@
-424585a57ad7d7d70785a41136ff1e28 *DESCRIPTION
+f9173566c2b80b0939a454deecb2633f *DESCRIPTION
 47a391626da6846e44460662d799e367 *NAMESPACE
-6b1a98770d42ab5dd21b9588cd8000ad *NEWS.md
+c93ee9867a3677ba272e966b906cbb14 *NEWS.md
 1db8419e1c9206696de2f357364fbf43 *R/calc_contrast.R
 fe68e1d84cee00fbab4928d580fceeb0 *R/calc_contrast_aggregated.R
 50945e4a47b4325aeb8718706850511c *R/cofad-package.R
@@ -9,11 +9,11 @@ fe68e1d84cee00fbab4928d580fceeb0 *R/calc_contrast_aggregated.R
 e9c7aa71034fcfd997dbcec25bf93278 *R/print_methods.R
 aeb62d6c37efd2f68cc8d4f6a10529e1 *R/run_app.R
 f23f38240504d675205e82141716c3d8 *R/server.R
-0e789aa164b172f6f7ee69fac1a1d3c1 *R/summary_methods.R
+3b93fc96031b73dd97301000cfbaee93 *R/summary_methods.R
 9eb0e73164beeb58552b7926585e8909 *R/ui.R
 b56ff2b193ecba52f9ec7f3b10cca008 *R/utils-pipe.R
-4bfab8443d3190ee81576e708a0c6e0a *README.md
-76161b65639451c966be75488458b3c3 *build/partial.rdb
+d24b3aaaee142f7f22a3b377be9b6589 *README.md
+b52aabe9a2757fc86742763db9dafc9b *build/partial.rdb
 3d97c3e626645625b1c769d0a1c3cda1 *data/akan.rda
 e2810380050a87f4222d5df842003e10 *data/furr_p4.rda
 40df0df2e8abfd93b0059fc6646daa9b *data/haans_within1by4.rda
@@ -67,8 +67,8 @@ dd663c32052a512d2e9cc79a673e69b3 *tests/testthat/sedlmeier_p525.csv
 5c73c823156bd3f9a1bc09452decff43 *tests/testthat/sedlmeier_p537.csv
 eb0ecdf0a0ef7d9fc9e950d4ea089019 *tests/testthat/setup-shinytest2.R
 09a8b19fade7124a07799e556f0960d3 *tests/testthat/test-calc_contrast_aggregated.R
-a9b9b49203683f77cb0c6d44acdf74a8 *tests/testthat/test-examples.R
+6110d634d890de774b219b1a1f90f3a7 *tests/testthat/test-examples.R
 8017177f7ba665592594e7bb44a38df7 *tests/testthat/test-gui.R
 d2580a06ae088764430056086e9fa220 *tests/testthat/test-schwoebel.R
-701461d4e054ef02762598349cdd427f *tests/testthat/test-summary_methods.R
+a3127d22c894601853c457744ef72559 *tests/testthat/test-summary_methods.R
 abf28ec5ca3f953f15ed68d148e8f835 *tests/testthat/test-validation.R
